@@ -18,7 +18,7 @@ pipeline {
             steps {
                 echo "Envoi de l'analyse vers SonarQube..."
                 // Remplacez VOTRE_MOT_DE_PASSE par celui de l'admin SonarQube
-                sh "mvn sonar:sonar -Dsonar.host.url=http://192.168.33.10:9000 -Dsonar.login=admin -Dsonar.password=VOTRE_MOT_DE_PASSE"
+                sh "mvn sonar:sonar -Dsonar.host.url=http://192.168.33.10:9000 -Dsonar.login=admin -Dsonar.password=admin123"
             }
         }
     } 
