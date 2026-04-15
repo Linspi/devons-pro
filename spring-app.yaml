@@ -1,39 +1,43 @@
+# 1. Déploiement de l'application Spring Boot
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: spring-app-deployment
-  namespace: devops
+  [cite_start]namespace: devops # Namespace dédié à l'atelier [cite: 38, 239]
+  labels:
+    [cite_start]app: spring-app [cite: 241]
 spec:
-  replicas: 2
+  [cite_start]replicas: 2 # Déploiement de deux Pods pour la haute disponibilité [cite: 243, 354]
   selector:
     matchLabels:
-      app: spring-app
+      [cite_start]app: spring-app [cite: 246]
   template:
     metadata:
       labels:
-        app: spring-app
+        [cite_start]app: spring-app [cite: 250]
     spec:
       containers:
-      - name: spring-app
-        image: sirinenaifar/devops-spring:latest
+      - [cite_start]name: spring-app [cite: 253]
+        [cite_start]image: sirinenaifar/devops-spring:latest # Image Docker spécifiée dans le TP [cite: 254]
         ports:
-        - containerPort: 8080
+        - [cite_start]containerPort: 8080 # Port d'écoute interne de l'application [cite: 201, 255]
         envFrom:
         - configMapRef:
-            name: spring-app-config
+            [cite_start]name: spring-app-config # Référence au ConfigMap pour les paramètres [cite: 196, 261]
         - secretRef:
-            name: spring-app-secret
+            [cite_start]name: spring-app-secret # Référence au Secret pour les identifiants DB [cite: 215, 284]
 ---
+# 2. Service pour exposer l'application
 apiVersion: v1
 kind: Service
 metadata:
   name: spring-app-service
-  namespace: devops
+  [cite_start]namespace: devops [cite: 299]
 spec:
-  type: NodePort
+  [cite_start]type: NodePort # Permet l'accès externe via l'IP de Minikube [cite: 295, 302]
   ports:
   - port: 8080
     targetPort: 8080
-    nodePort: 30080
+    [cite_start]nodePort: 30080 # Port spécifique demandé pour l'accès externe [cite: 295, 304]
   selector:
-    app: spring-app
+    [cite_start]app: spring-app [cite: 307]
