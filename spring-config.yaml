@@ -1,0 +1,25 @@
+# ConfigMap pour les paramètres non sensibles [cite: 189]
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: spring-app-config
+  namespace: devops
+data:
+  [cite_start]APPLICATION_NAME: "devops-spring-app" [cite: 199]
+  [cite_start]SPRING_PROFILES_ACTIVE: "prod" [cite: 200]
+  [cite_start]SERVER_PORT: "8080" [cite: 201]
+  [cite_start]SPRING_JPA_HIBERNATE_DDL_AUTO: "update" [cite: 203]
+  [cite_start]SPRING_JPA_SHOW_SQL: "false" [cite: 204]
+---
+# Secret pour les identifiants (encodés en Base64) [cite: 211]
+apiVersion: v1
+kind: Secret
+metadata:
+  name: spring-app-secret
+  namespace: devops
+type: Opaque
+data:
+  # jdbc:mysql://mysql-service.devops.svc.cluster.local:3306/springdb [cite: 219, 224]
+  database-url: amRiYzpteXNxbDovL215c3FsLXNlcnZpY2UuZGV2b3BzLnN2Yy5jbHVzdGVyLmxvY2FsOjMzMDYvc3ByaW5nZGI=
+  [cite_start]database-username: cm9vdA== # root [cite: 226]
+  [cite_start]database-password: CGFzc3dvcmQxMjM= # password123 [cite: 227]
