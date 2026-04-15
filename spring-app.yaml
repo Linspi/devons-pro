@@ -38,10 +38,4 @@ spec:
     targetPort: 8080
     nodePort: 30080
   selector:
-    app: spring-app  [cite_start]type: NodePort # Permet l'accès externe via l'IP de Minikube [cite: 295, 302]
-  ports:
-  - port: 8080
-    targetPort: 8080
-    [cite_start]nodePort: 30080 # Port spécifique demandé pour l'accès externe [cite: 295, 304]
-  selector:
-    [cite_start]app: spring-app [cite: 307]
+    app: spring-app
