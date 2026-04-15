@@ -1,11 +1,10 @@
-# Déploiement de l'application Spring [cite: 233]
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: spring-app-deployment
   namespace: devops
 spec:
-  [cite_start]replicas: 2 # Deux instances de l'application [cite: 243]
+  replicas: 2
   selector:
     matchLabels:
       app: spring-app
@@ -16,26 +15,25 @@ spec:
     spec:
       containers:
       - name: spring-app
-        [cite_start]image: sirinenaifar/devops-spring:latest # L'image Docker du TP [cite: 254]
+        image: sirinenaifar/devops-spring:latest
         ports:
         - containerPort: 8080
-        [cite_start]envFrom: # On charge toutes les variables du ConfigMap et Secret [cite: 257, 280]
+        envFrom:
         - configMapRef:
             name: spring-app-config
         - secretRef:
             name: spring-app-secret
 ---
-# Service pour accéder à l'app depuis l'extérieur [cite: 294]
 apiVersion: v1
 kind: Service
 metadata:
   name: spring-app-service
   namespace: devops
 spec:
-  [cite_start]type: NodePort # Permet l'accès via l'IP de Minikube [cite: 302]
+  type: NodePort
   ports:
   - port: 8080
     targetPort: 8080
-    [cite_start]nodePort: 30080 # Port externe fixé par le TP [cite: 304]
+    nodePort: 30080
   selector:
     app: spring-app
