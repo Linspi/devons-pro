@@ -1,0 +1,73 @@
+# 1. Le stockage (PV & PVC) [cite: 55, 73]
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv
+  namespace: devops
+spec:
+  capacity:
+    [cite_start]storage: 2Gi # Capacité de 2Go [cite: 64]
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    [cite_start]path: "/var/lib/mysql" # Chemin sur l'hôte [cite: 68]
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+  namespace: devops
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      [cite_start]storage: 2Gi # Demande de 2Go pour MySQL [cite: 81]
+---
+# 2. Le Déploiement MySQL [cite: 89]
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment
+  namespace: devops
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        [cite_start]image: mysql:8.0 # Image officielle demandée [cite: 104]
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          [cite_start]value: "password123" # Mot de passe root [cite: 107]
+        - name: MYSQL_DATABASE
+          [cite_start]value: "springdb" # Nom de la base de données [cite: 109]
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - name: mysql-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-storage
+        persistentVolumeClaim:
+          [cite_start]claimName: mysql-pvc # Utilise le stockage créé plus haut [cite: 114]
+---
+# 3. Le Service MySQL [cite: 119]
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+  namespace: devops
+spec:
+  ports:
+  - port: 3306
+    targetPort: 3306
+  selector:
+    app: mysql
+  [cite_start]type: ClusterIP # Accès interne uniquement [cite: 134]
