@@ -1,14 +1,15 @@
-# On change l'image de base pour une version compatible ARM64 (Mac M1/M2/M3)
-FROM openjdk:17-jdk-slim
+# Utilisation de Eclipse Temurin (le successeur officiel d'OpenJDK)
+# Cette version supporte parfaitement les Mac M1/M2/M3 (ARM64)
+FROM eclipse-temurin:17-jre
 
-# On définit le dossier de travail
+# Dossier de travail
 WORKDIR /app
 
-# On copie le fichier JAR généré
+# Copie du JAR généré par Maven
 COPY target/*.jar app.jar
 
-# On expose le port 8080
+# Port d'écoute
 EXPOSE 8080
 
-# On lance l'application
+# Lancement
 ENTRYPOINT ["java", "-jar", "app.jar"]
