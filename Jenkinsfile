@@ -21,20 +21,6 @@ pipeline {
                 sh "mvn sonar:sonar -Dsonar.host.url=http://192.168.33.10:9000 -Dsonar.login=admin -Dsonar.password=admin123"
             }
         }
-        stage('Checkout Code') {
-            steps {
-                // On récupère tes fichiers YAML depuis GitHub
-                git 'https://github.com/Linspi/devons-pro.git'
-            }
-        }
-
-        stage('Déploiement MySQL') {
-            steps {
-                echo 'Installation de la base de données...'
-                // On applique le fichier qui est à la racine
-                sh '/usr/local/bin/kubectl apply -f mysql-all.yaml -n devops'
-            }
-        }
 
         stage('Configuration Application') {
             steps {
