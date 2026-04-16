@@ -1,9 +1,8 @@
 pipeline { 
     agent any 
-    tools { 
-        maven "maven" 
-        jdk "JAVA_17" 
-    } 
+    tools {
+        maven 'maven-3' // Doit correspondre au nom choisi à l'étape 4
+    }
     stages { 
         // L'étape Git a été retirée : Jenkins a déjà téléchargé le code à ce stade !
         
