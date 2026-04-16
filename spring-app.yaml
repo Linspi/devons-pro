@@ -17,7 +17,8 @@ spec:
     spec:
       containers:
       - name: spring-app
-        image: sirinenaifar/devops-spring:latest
+        image: mon-app-spring:local
+        imagePullPolicy: Never
         ports:
         - containerPort: 8080
         envFrom:
