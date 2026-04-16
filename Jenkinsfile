@@ -23,13 +23,13 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
-            steps {
-                echo "Envoi de l'analyse vers SonarQube..."
+        //stage('SonarQube Analysis') {
+            //steps {
+              //  echo "Envoi de l'analyse vers SonarQube..."
                 // Utilisation de tes paramètres (vérifie bien l'IP si elle a changé)
-                sh "mvn sonar:sonar -Dsonar.host.url=http://192.168.33.10:9000 -Dsonar.login=admin -Dsonar.password=admin123"
-            }
-        }
+                //sh "mvn sonar:sonar -Dsonar.host.url=http://192.168.33.10:9000 -Dsonar.login=admin -Dsonar.password=admin123"
+            //}
+        //}
 
         stage('Docker Build Local') {
             steps {
