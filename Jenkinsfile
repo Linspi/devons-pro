@@ -39,7 +39,6 @@ pipeline {
                 
                 echo "Chargement de l'image dans Minikube..."
                 // TRÈS IMPORTANT : rend l'image visible par le cluster Kubernetes
-                sh "minikube image load mon-app-spring:local"
             }
         }
 
