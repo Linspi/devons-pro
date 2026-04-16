@@ -1,14 +1,13 @@
-# On utilise une version légère de Java (JRE) pour l'exécution
-FROM eclipse-temurin:17-jre-alpine
+# On change l'image de base pour une version compatible ARM64 (Mac M1/M2/M3)
+FROM openjdk:17-jdk-slim
 
 # On définit le dossier de travail
 WORKDIR /app
 
-# On copie le fichier JAR généré par l'étape Maven (Build & Test)
-# Le fichier se trouve dans le dossier target/ après la compilation
+# On copie le fichier JAR généré
 COPY target/*.jar app.jar
 
-# On expose le port sur lequel l'appli écoute
+# On expose le port 8080
 EXPOSE 8080
 
 # On lance l'application
