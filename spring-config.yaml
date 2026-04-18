@@ -17,6 +17,9 @@ metadata:
   namespace: devops
 type: Opaque
 data:
-  database-url: amRiYzpteXNxbDovL215c3FsLXNlcnZpY2UuZGV2b3BzLnN2Yy5jbHVzdGVyLmxvY2FsOjMzMDYvc3ByaW5nZGI=
-  database-username: cm9vdA==
-  database-password: CGFzc3dvcmQxMjM=
+  # Clé renommée pour Spring + ajout du paramètre 'createDatabaseIfNotExist'
+  SPRING_DATASOURCE_URL: amRiYzpteXNxbDovL215c3FsLXNlcnZpY2U6MzMwNi9zcHJpbmdkYj9jcmVhdGVEYXRhYmFzZUlmTm90RXhpc3Q9dHJ1ZSZ1c2VTU0w9ZmFsc2U=
+  # Clé renommée pour 'root'
+  SPRING_DATASOURCE_USERNAME: cm9vdA==
+  # Clé renommée + mot de passe corrigé (c minuscule)
+  SPRING_DATASOURCE_PASSWORD: cGFzc3dvcmQxMjM=
