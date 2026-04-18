@@ -17,7 +17,7 @@ metadata:
   namespace: devops
 type: Opaque
 data:
-  # On utilise l'adresse DNS complète pour être sûr à 200%
-  SPRING_DATASOURCE_URL: amRiYzpteXNxbDovL215c3FsLXNlcnZpY2UuZGV2b3BzLnN2Yy5jbHVzdGVyLmxvY2FsOjMzMDYvc3ByaW5nZGI/Y3JlYXRlRGF0YWJhc2VJZk5vdEV4aXN0PXRydWUmdXNlU1NMPWZhbHNl
+  # Cette URL contient désormais : useSSL=false ET allowPublicKeyRetrieval=true
+  SPRING_DATASOURCE_URL: amRiYzpteXNxbDovL215c3FsLXNlcnZpY2U6MzMwNi9zcHJpbmdkYj9jcmVhdGVEYXRhYmFzZUlmTm90RXhpc3Q9dHJ1ZSZ1c2VTU0w9ZmFsc2UmYWxsb3dQdWJsaWNLZXlSZXRyaWV2YWw9dHJ1ZQ==
   SPRING_DATASOURCE_USERNAME: cm9vdA==
   SPRING_DATASOURCE_PASSWORD: cGFzc3dvcmQxMjM=
