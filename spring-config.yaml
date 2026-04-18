@@ -4,11 +4,11 @@ metadata:
   name: spring-app-config
   namespace: devops
 data:
-  APPLICATION_NAME: "devops-spring-app"
   SPRING_PROFILES_ACTIVE: "prod"
-  SERVER_PORT: "8080"
   SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
-  SPRING_JPA_SHOW_SQL: "false"
+  # ON FORCE LE DIALECTE ICI :
+  SPRING_JPA_DATABASE_PLATFORM: "org.hibernate.dialect.MySQLDialect"
+  SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: "org.hibernate.dialect.MySQLDialect"
 ---
 apiVersion: v1
 kind: Secret
@@ -17,9 +17,7 @@ metadata:
   namespace: devops
 type: Opaque
 data:
-  # Clé renommée pour Spring + ajout du paramètre 'createDatabaseIfNotExist'
-  SPRING_DATASOURCE_URL: amRiYzpteXNxbDovL215c3FsLXNlcnZpY2U6MzMwNi9zcHJpbmdkYj9jcmVhdGVEYXRhYmFzZUlmTm90RXhpc3Q9dHJ1ZSZ1c2VTU0w9ZmFsc2U=
-  # Clé renommée pour 'root'
+  # On utilise l'adresse DNS complète pour être sûr à 200%
+  SPRING_DATASOURCE_URL: amRiYzpteXNxbDovL215c3FsLXNlcnZpY2UuZGV2b3BzLnN2Yy5jbHVzdGVyLmxvY2FsOjMzMDYvc3ByaW5nZGI/Y3JlYXRlRGF0YWJhc2VJZk5vdEV4aXN0PXRydWUmdXNlU1NMPWZhbHNl
   SPRING_DATASOURCE_USERNAME: cm9vdA==
-  # Clé renommée + mot de passe corrigé (c minuscule)
   SPRING_DATASOURCE_PASSWORD: cGFzc3dvcmQxMjM=
